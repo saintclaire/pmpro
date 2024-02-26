@@ -46,6 +46,8 @@ function ewn_export_user_pdf() {
         wp_die();
     }
     require('fpdf184/fpdf.php');
+
+ 
     
     // Get the user ID from the Ajax request
     $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
@@ -113,7 +115,13 @@ $pdf->SetFont('Times','',12);
    $pdf->Cell(0,10,'Mobile: '.$mobile,0,1);
    $pdf->Cell(0,10,'Telephone: '.$telephone,0,1);
    $pdf->Cell(0,10,'Highest educational qualification: '.$highest_educational_qualification,0,1);
-   $pdf->Cell(0,10,'Do you own a business ?: '.$do_you_own_a_business_,0,1);
+//    $pdf->Cell(0,10,'Do you own a business ?: '.$do_you_own_a_business_,0,1);
+if ($business_name !== 'N/A' || 
+    $type_of_business !== 'N/A' || 
+    $capital_invested !== 'N/A' || 
+    $year_of_establishment !== 'N/A' || 
+    $annual_turnover !== 'N/A' || 
+    $number_of_staff_employed !== 'N/A') {
    $pdf->SetFont('Times','B',14);
    $pdf->Cell(0,10,'Business Owners/ Entrepreneurs only',0,1,'C');
    $pdf->SetFont('Times','',12);
@@ -123,8 +131,18 @@ $pdf->SetFont('Times','',12);
    $pdf->Cell(0,10,'Year of Establishment: '.$year_of_establishment,0,1,);
    $pdf->Cell(0,10,'Annual Turnover: '.$annual_turnover,0,1,);
    $pdf->Cell(0,10,'Number of Staff Employed: '.$number_of_staff_employed,0,1,);
+}
+   if ($occupation_job_title !== 'N/A' || 
+   $duration_in_your_current_position !== 'N/A' || 
+   $previous_position !== 'N/A' || 
+   $number_of_years !== 'N/A' || 
+   $company_name !== 'N/A' || 
+   $company_address !== 'N/A' || 
+   $company_telephone !== 'N/A' || 
+   $company_website !== 'N/A' || 
+   $your_work_email_address !== 'N/A') {
    $pdf->SetFont('Times','B',14);
-   $pdf->Cell(0,10,'Work Experience',0,1,'C');
+   $pdf->Cell(0,10,'Previous Work Experience',0,1,'C');
    $pdf->SetFont('Times','',12);
    $pdf->Cell(0,10,'Occupation /Job title: '.$occupation_job_title,0,1,);
    $pdf->Cell(0,10,'Duration in your current position: '.$duration_in_your_current_position,0,1,);
@@ -133,6 +151,13 @@ $pdf->SetFont('Times','',12);
    $pdf->Cell(0,10,'Company Telephone: '.$company_telephone,0,1,);
    $pdf->Cell(0,10,'Company Website: '.$company_website,0,1,);
    $pdf->Cell(0,10,'Your Work Email address '.$your_work_email_address,0,1,);
+   }
+   if ($business_name !== 'N/A' || 
+   $_number_of_years_in_executive_position !== 'N/A' || 
+   $business_address !== 'N/A' || 
+   $business_telephone !== 'N/A' || 
+   $business_website !== 'N/A' || 
+   $business_email_address !== 'N/A') {
    $pdf->SetFont('Times','B',14);
    $pdf->Cell(0,10,'Corporate Experience where applicable',0,1,'C');
    $pdf->SetFont('Times','',12);
@@ -142,6 +167,7 @@ $pdf->SetFont('Times','',12);
    $pdf->Cell(0,10,'Business Telephone: '.$business_telephone,0,1,);
    $pdf->Cell(0,10,'Business Website: '.$business_website,0,1,);
    $pdf->Cell(0,10,'Business Email address: '.$business_email_address,0,1,);
+    }
    $pdf->SetFont('Times','B',14);
    $pdf->Cell(0,10,'Miscelleanous',0,1,'C');
    $pdf->SetFont('Times','',12);
